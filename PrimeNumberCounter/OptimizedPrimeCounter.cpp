@@ -15,17 +15,18 @@
 #include <iostream>
 #include <cmath>
 #include <thread>
+#include <chrono>
 using namespace std;
 
 //global variable (must be declared before all threads)
-u_int64_t counts[4];
+uint64_t counts[4];
 
 // threads t1-t4
-void countPrime(u_int64_t start, u_int64_t n, u_int64_t* output) {
-    u_int64_t lim, count = 0;
-    for (u_int64_t i = start; i <= n; i+=12) {
-        lim = static_cast<u_int64_t>(sqrt(i));
-        for (u_int64_t j = 5; j <= lim; j+=6) {
+void countPrime(uint64_t start, uint64_t n, uint64_t* output) {
+    uint64_t lim, count = 0;
+    for (uint64_t i = start; i <= n; i+=12) {
+        lim = static_cast<uint64_t>(sqrt(i));
+        for (uint64_t j = 5; j <= lim; j+=6) {
             if (i % j == 0 || i % (j+2) == 0) {goto NOT_PRIME;}
         }
         count++;
@@ -40,7 +41,7 @@ void countPrime(u_int64_t start, u_int64_t n, u_int64_t* output) {
 */
 int main() {
     // Test runtime:
-    std::chrono::steady_clock::time_point _start(std::chrono::steady_clock::now());
+    chrono::steady_clock::time_point _start(chrono::steady_clock::now());
 
     // initialize number of primes to count and step size data
     const int n = 100'000'000; // Count primes in [1, n] (n > 3)
@@ -56,12 +57,12 @@ int main() {
     t4.join();
 
     // add up the results from each thread
-    u_int64_t total = 2; // our algorithm skips 2 & 3
+    uint64_t total = 2; // our algorithm skips 2 & 3
     for (int i = 0; i < size(counts); i++) {total += counts[i];}
     cout << "Total number of primes: " << total << "\n";
 
     // Test runtime output (in seconds):
-    std::chrono::steady_clock::time_point _end(std::chrono::steady_clock::now());
-    std::cout << std::chrono::duration_cast<std::chrono::duration<double>>(_end - _start).count() << " seconds\n";
+    chrono::steady_clock::time_point _end(chrono::steady_clock::now());
+    cout << chrono::duration_cast<chrono::duration<double>>(_end - _start).count() << " seconds\n";
     return 0;
 }
