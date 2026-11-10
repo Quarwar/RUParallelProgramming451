@@ -21,7 +21,7 @@ I had some trouble with the original libraries, so I asked ChatGPT for a workaro
 - I'm only submitting the main.cpp file, since the other files are unchanged from the reference code. 
 All my files (and the reference code) are in the GitHub repo linked above; pull from there to test.
 
-Benchmark (using testfast.conf, available in my repo):
+Benchmark (using testfast.conf, available in my repo; you can test the original by setting num_threads=1):
 Single-thread (original code): 24.1 s
 Multi-threaded (4 threads): 1.22 s 
 
