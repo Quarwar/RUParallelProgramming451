@@ -3,7 +3,7 @@
 Parallel Programming HW4
 Author: Joseph Signorile
 Cite: ChatGPT for syntax and debugging help (the code itself was mostly written by me)
-GitHub: 
+GitHub: https://github.com/Quarwar/RUParallelProgramming451/tree/main/OpenMPGravSim
 Description: Gravity Simulator - runs the position calculations for N bodies in a system for 
 a certain number of timesteps. Tests different optimization methods using OpenMP parallelism.
 
